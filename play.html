@@ -12,7 +12,9 @@
   <h1>Today's Motivation & Music</h1>
 
   <!-- Embedded YouTube Song -->
-  <iframe id="ytPlayer" src="" frameborder="0" allowfullscreen></iframe>
+  <iframe id="ytPlayer" frameborder="0" allowfullscreen
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+  </iframe>
 
   <!-- Motivation Quote -->
   <div class="quote-box">
@@ -21,7 +23,17 @@
   </div>
 
   <script>
-    const lang = localStorage.getItem('userLang') || 'en';
+    // Ask user for preferred language if not already set
+    if (!localStorage.getItem('userLang')) {
+      const userLang = prompt("Select your language (en/ta/hi):", "en");
+      if (userLang && ['en', 'ta', 'hi'].includes(userLang)) {
+        localStorage.setItem('userLang', userLang);
+      } else {
+        localStorage.setItem('userLang', 'en');
+      }
+    }
+
+    const lang = localStorage.getItem('userLang');
 
     const quotes = {
       en: "Push yourself, because no one else is going to do it for you.",
@@ -31,12 +43,14 @@
 
     const youtubeSongs = {
       en: "https://www.youtube.com/embed/ZbZSe6N_BXs", // Happy - Pharrell
-      ta: "https://www.youtube.com/embed/Kyv_1k1SMu8?si=JwZMvEIRTOAsw1DX", // Tamil motivational song
+      ta: "https://www.youtube.com/embed/Kyv_1k1SMu8", // Tamil motivation
       hi: "https://www.youtube.com/embed/XqZsoesa55w"  // Hindi inspiring
     };
 
-    document.getElementById('quoteText').innerText = quotes[lang];
-    document.getElementById('ytPlayer').src = youtubeSongs[lang];
+    window.onload = function() {
+      document.getElementById('quoteText').innerText = quotes[lang];
+      document.getElementById('ytPlayer').src = youtubeSongs[lang];
+    };
   </script>
 </body>
 </html>
