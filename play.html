@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Mood Music</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; background: #f0f0f0; }
+    iframe { margin-top: 20px; width: 90%; height: 315px; max-width: 600px; }
+    .quote-box { margin-top: 30px; padding: 20px; background: white; display: inline-block; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Today's Motivation & Music</h1>
+
+  <!-- Embedded YouTube Song -->
+  <iframe id="ytPlayer" src="" frameborder="0" allowfullscreen></iframe>
+
+  <!-- Motivation Quote -->
+  <div class="quote-box">
+    <h3>Quote of the Day</h3>
+    <p id="quoteText"></p>
+  </div>
+
+  <script>
+    const lang = localStorage.getItem('userLang') || 'en';
+
+    const quotes = {
+      en: "Push yourself, because no one else is going to do it for you.",
+      ta: "உன்னால் முடியும் என்று நம்பு, அதுவே வெற்றியின் முதல் படி.",
+      hi: "खुद पर विश्वास रखो, सफलता आपके कदम चूमेगी।"
+    };
+
+    const youtubeSongs = {
+      en: "https://www.youtube.com/embed/ZbZSe6N_BXs", // Happy - Pharrell
+      ta: "https://www.youtube.com/embed/K1HxaQeIf2Q", // Tamil motivational song
+      hi: "https://www.youtube.com/embed/XqZsoesa55w"  // Hindi inspiring
+    };
+
+    document.getElementById('quoteText').innerText = quotes[lang];
+    document.getElementById('ytPlayer').src = youtubeSongs[lang];
+  </script>
+</body>
+</html>
