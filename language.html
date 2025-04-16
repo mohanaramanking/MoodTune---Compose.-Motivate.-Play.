@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Language</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 100px; }
+    select, button { padding: 10px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2>Select Your Preferred Language</h2>
+  <select id="lang">
+    <option value="en">English</option>
+    <option value="ta">Tamil</option>
+    <option value="hi">Hindi</option>
+  </select><br><br>
+  <button onclick="goToMusic()">Continue</button>
+
+  <script>
+    function goToMusic() {
+      const lang = document.getElementById('lang').value;
+      localStorage.setItem('userLang', lang);
+      window.location.href = 'play.html';
+    }
+  </script>
+</body>
+</html>
